@@ -1,12 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import TickerList from './Components/TickerList/TickerList';
-import TickerDetail from './Components/TickerDetail/TickerDetail';
+import logo from "./logo.svg";
+import "./App.css";
+import TickerList from "./Components/TickerList/TickerList";
+import TickerDetail from "./Components/TickerDetail/TickerDetail";
+import { TickerSearchProvider } from "./contexts/TickerSearchContext/TickerSearchContext";
 
 function App() {
   return (
     <div className="App">
-      <TickerDetail />
+      <TickerSearchProvider>
+        <TickerDetail />
+      </TickerSearchProvider>
     </div>
   );
 }

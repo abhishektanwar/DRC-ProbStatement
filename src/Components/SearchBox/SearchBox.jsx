@@ -1,10 +1,12 @@
 import { useState, FC, useEffect } from "react";
+import { useTickerSearch } from "../../contexts/TickerSearchContext/TickerSearchContext";
 import "./search-box.css";
 
 const SearchBox = ({ handleSearch }) => {
-  const [searchInput, setSearchInput] = useState("");
+  
+  const {searchTicker:searchInput,handleTickerSearch} = useTickerSearch();
   useEffect(() => {
-    if (searchInput === "") {
+    if (searchInput !== "") {
       // handleSearch("");
     }
   }, [searchInput]);
@@ -14,7 +16,7 @@ const SearchBox = ({ handleSearch }) => {
         type="text"
         placeholder="Search"
         value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        onChange={(e) => handleTickerSearch(e.target.value)}
       />
       <i
         className="fa fa-search"

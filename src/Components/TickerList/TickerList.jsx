@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./ticker-list.css";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
+import { useTickerSearch } from "../../contexts/TickerSearchContext/TickerSearchContext";
 
 const TickerList = () => {
   const [tickerList, setTickerList] = useState([]);
+  const {searchTicker} = useTickerSearch();
+  let filteredTickerList =tickerList;
   const getTickerList = async () => {
     const res = await axios.request({
       url: "https://api-pub.bitfinex.com/v2/tickers",
@@ -15,19 +18,26 @@ const TickerList = () => {
     setTickerList(res.data);
   };
 
+  if(searchTicker){
+    filteredTickerList = tickerList.filter((ticker)=>ticker[0].includes(searchTicker))
+    // setTickerList(searchTickerList)
+  }
+
   useEffect(() => {
-    setInterval(() => {
+    const interval = setInterval(() => {
       getTickerList();
-    }, 5000);
+    },5000);
+    // return clearInterval(interval)
+  
   }, []);
   return (
     <div className="ticker-list-container">
       <SearchBox />
       <div className="ticker-list">
-        {tickerList &&
-          tickerList.map((ticker) => {
+        {filteredTickerList &&
+          filteredTickerList.map((ticker) => {
             return (
-              <div className="ticker-contianer flex-column">
+              <div className="ticker-contianer flex-column" key={ticker[0]}>
                 <div className="flex-row">
                   <span className="typo-xs">{ticker[0]}</span>
                   <span className="typo-xs">$ {ticker[7]}</span>
@@ -42,6 +52,7 @@ const TickerList = () => {
             );
           })}
       </div>
+      <h2>{`Ticker search ${searchTicker}`}</h2>
     </div>
   );
 };
