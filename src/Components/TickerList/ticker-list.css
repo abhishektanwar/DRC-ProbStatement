@@ -1,0 +1,26 @@
+.ticker-list-container{
+  border-right: 2px solid var(--border-color);
+}
+
+.ticker-list{
+  overflow-y: scroll;
+  height: 90vh;
+}
+
+.ticker-contianer {
+  margin: 2rem 0;
+  padding: 1rem 5px;
+  cursor: pointer;
+}
+
+.ticker-contianer:hover{
+  background-color: var(--grey-background-color);
+}
+.ticker-contianer div{
+  justify-content: space-between;
+}
+
+
+.volume{
+  color:var(--bg-color-secondary)
+}
