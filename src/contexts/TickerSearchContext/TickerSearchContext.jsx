@@ -39,10 +39,11 @@ const TickerSearchProvider = ({ children }) => {
   };
   useEffect(() => {
     setFetchTickerStatus((prev) => ({ ...prev, loading: true }));
-    setInterval(() => {
+    const interval = setInterval(() => {
       getTickerList();
       setFetchTickerStatus((prev) => ({ ...prev, loading: false }));
     }, 5000);
+    return ()=>{clearInterval(interval)}
   }, []);
   const handleTickerSearch = (value) => {
     setSearchTicker(value);

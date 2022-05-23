@@ -1,0 +1,29 @@
+.individual-ticker-detail-container{
+  margin: 3rem 4rem;
+  width: 100%;
+}
+
+.individual-ticker-detail-container-top-section{
+  width: fit-content;
+  margin-bottom: 2rem;
+}
+.individual-ticker-detail-container-bottom-section{
+  border-top: 2px solid var(--border-color);
+  width: 100%;
+  display: flex;
+}
+
+.individual-ticker-detail-container-bottom-section div:not(:first-child){
+  margin-left: 5rem;
+}
+
+.ticker-property{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.secondary-text{
+  color:var(--bg-color-secondary)
+  
+}
