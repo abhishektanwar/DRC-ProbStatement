@@ -11,7 +11,7 @@ const TickerList = () => {
 
   if (searchTicker) {
     filteredTickerList = tickerList.filter((ticker) =>
-      ticker[0].includes(searchTicker)
+      ticker[0].includes(searchTicker.toUpperCase())
     );
   }
 

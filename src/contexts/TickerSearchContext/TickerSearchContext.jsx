@@ -11,7 +11,6 @@ const TickerSearchProvider = ({ children }) => {
     errorMessage: "",
   });
   const getTickerList = async () => {
-    // setFetchTickerStatus((prev) => ({ ...prev, loading: true }));
     try {
       const res = await axios.request({
         url: "https://api-pub.bitfinex.com/v2/tickers",
