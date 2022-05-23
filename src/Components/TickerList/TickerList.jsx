@@ -3,54 +3,45 @@ import "./ticker-list.css";
 import axios from "axios";
 import SearchBox from "../SearchBox/SearchBox";
 import { useTickerSearch } from "../../contexts/TickerSearchContext/TickerSearchContext";
-
+import { Loader } from "../Loader/Loader";
+import Error from "../Error/Error";
 const TickerList = () => {
-  const [tickerList, setTickerList] = useState([]);
-  const {searchTicker} = useTickerSearch();
-  let filteredTickerList =tickerList;
-  const getTickerList = async () => {
-    const res = await axios.request({
-      url: "https://api-pub.bitfinex.com/v2/tickers",
-      method: "GET",
-      params: { symbols: "ALL" },
-    });
-    console.log("res", res.data);
-    setTickerList(res.data);
-  };
+  const { searchTicker, tickerList, fetchTickerStatus } = useTickerSearch();
+  let filteredTickerList = tickerList;
 
-  if(searchTicker){
-    filteredTickerList = tickerList.filter((ticker)=>ticker[0].includes(searchTicker))
-    // setTickerList(searchTickerList)
+  if (searchTicker) {
+    filteredTickerList = tickerList.filter((ticker) =>
+      ticker[0].includes(searchTicker)
+    );
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getTickerList();
-    },5000);
-    // return clearInterval(interval)
-  
-  }, []);
   return (
     <div className="ticker-list-container">
       <SearchBox />
       <div className="ticker-list">
-        {filteredTickerList &&
+        {fetchTickerStatus.loading ? (
+          <div className="loader-container">
+            <Loader />
+          </div>
+        ) : fetchTickerStatus.error ? (
+          <Error message={fetchTickerStatus.errorMessage} />
+        ) : (
+          filteredTickerList &&
           filteredTickerList.map((ticker) => {
             return (
               <div className="ticker-contianer flex-column" key={ticker[0]}>
                 <div className="flex-row">
                   <span className="typo-xs">{ticker[0]}</span>
                   <span className="typo-xs">$ {ticker[7]}</span>
-
                 </div>
                 <div className="flex-row">
                   <span className="body-typo-md volume">{`Vol: ${ticker[9]}`}</span>
                   <span className="body-typo-md volume">$ {ticker[7]}</span>
-
                 </div>
               </div>
             );
-          })}
+          })
+        )}
       </div>
       <h2>{`Ticker search ${searchTicker}`}</h2>
     </div>

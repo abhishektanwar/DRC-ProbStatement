@@ -1,0 +1,4 @@
+.error-container{
+  color: var(--toast-error-color);
+  text-align: center;
+}
