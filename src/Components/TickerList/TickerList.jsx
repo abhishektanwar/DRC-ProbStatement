@@ -35,8 +35,12 @@ const TickerList = () => {
                   <span className="typo-xs">$ {ticker[7]}</span>
                 </div>
                 <div className="flex-row">
-                  <span className="body-typo-md volume">{`Vol: ${ticker[9]}`}</span>
-                  <span className="body-typo-md volume">$ {ticker[7]}</span>
+                  <span className="body-typo-md volume">{`Vol: ${ticker[8]}`}</span>
+                  <span className="body-typo-md volume" style={{color:ticker[6]<0?'red':'green'}}>{`${(ticker[6]*100).toFixed(2)} %`}</span>
+                </div>
+                <div className="flex-row">
+                  <span className="body-typo-md volume">{`High: ${ticker[9]}`}</span>
+                  <span className="body-typo-md volume">{`Low: ${ticker[10]}`}</span>
                 </div>
               </div>
             );
