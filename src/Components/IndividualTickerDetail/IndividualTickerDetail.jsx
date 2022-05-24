@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useTicker } from "../../contexts/TickerSearchContext/TickerContext";
-import { initSocket } from "../../socktes/TickerSocket";
+import { useTicker } from "../../contexts/TickerContext/TickerContext";
+import { initSocket } from "../../sockets/TickerSocket";
 import { Loader } from "../Loader/Loader";
 import "./individual-ticker-detail-container.css";
 

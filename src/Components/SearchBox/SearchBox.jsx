@@ -1,5 +1,5 @@
-import { useState, FC, useEffect } from "react";
-import { useTicker } from "../../contexts/TickerSearchContext/TickerContext";
+import { useEffect } from "react";
+import { useTicker } from "../../contexts/TickerContext/TickerContext";
 import "./search-box.css";
 
 const SearchBox = ({ handleSearch }) => {

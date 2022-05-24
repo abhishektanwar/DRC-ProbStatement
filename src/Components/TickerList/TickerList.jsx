@@ -1,6 +1,6 @@
 import "./ticker-list.css";
 import SearchBox from "../SearchBox/SearchBox";
-import { useTicker } from "../../contexts/TickerSearchContext/TickerContext";
+import { useTicker } from "../../contexts/TickerContext/TickerContext";
 import { Loader } from "../Loader/Loader";
 import Error from "../Error/Error";
 const TickerList = () => {

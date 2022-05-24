@@ -1,8 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
-import TickerList from "./Components/TickerList/TickerList";
 import TickerDetail from "./Components/TickerDetail/TickerDetail";
-import { TickerProvider } from "./contexts/TickerSearchContext/TickerContext";
+import { TickerProvider } from "./contexts/TickerContext/TickerContext";
 
 function App() {
   return (
