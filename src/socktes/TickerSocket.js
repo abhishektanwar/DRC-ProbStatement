@@ -1,4 +1,4 @@
-const initSocket = ({setSt,tickerToSubscribe}) => {
+const initSocket = ({setTickerDetails,tickerToSubscribe}) => {
   const ws = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
 
   const handleSocketConnectionClose = () => {
@@ -30,7 +30,7 @@ const initSocket = ({setSt,tickerToSubscribe}) => {
       try {
         if (json[1] !== "hb") {
           console.log("ws data", json);
-          setSt(json[1])
+          setTickerDetails(json[1])
         }
       } catch (err) {
         console.log(err);

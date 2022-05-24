@@ -45,16 +45,11 @@ const TickerList = () => {
                     style={{ color: ticker[6] < 0 ? "red" : "green" }}
                   >{`${(ticker[6] * 100).toFixed(2)} %`}</span>
                 </div>
-                <div className="flex-row">
-                  <span className="body-typo-md volume">{`High: ${ticker[9]}`}</span>
-                  <span className="body-typo-md volume">{`Low: ${ticker[10]}`}</span>
-                </div>
               </div>
             );
           })
         )}
       </div>
-      <h2>{`Ticker search ${searchTicker}`}</h2>
     </div>
   );
 };

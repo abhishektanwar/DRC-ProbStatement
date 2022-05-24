@@ -6,7 +6,7 @@ const TickerProvider = ({ children }) => {
   const [searchTicker, setSearchTicker] = useState("");
   const [tickerList, setTickerList] = useState([]);
   const [tickerToSubscribe, setTickerToSubscribe] = useState("tBTCUSD");
-  const [st, setSt] = useState([]);
+  const [tickerDetails, setTickerDetails] = useState([]);
   const [fetchTickerStatus, setFetchTickerStatus] = useState({
     loading: false,
     error: false,
@@ -61,8 +61,8 @@ const TickerProvider = ({ children }) => {
         tickerList,
         setTickerList,
         fetchTickerStatus,
-        st,
-        setSt,
+        tickerDetails,
+        setTickerDetails,
         tickerToSubscribe,
         setTickerToSubscribe,
       }}
