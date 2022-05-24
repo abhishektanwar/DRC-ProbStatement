@@ -5,6 +5,7 @@ const TickerSearchContext = createContext();
 const TickerSearchProvider = ({ children }) => {
   const [searchTicker, setSearchTicker] = useState("");
   const [tickerList, setTickerList] = useState([]);
+  const [st,setSt] = useState([])
   const [fetchTickerStatus, setFetchTickerStatus] = useState({
     loading: false,
     error: false,
@@ -57,6 +58,7 @@ const TickerSearchProvider = ({ children }) => {
         tickerList,
         setTickerList,
         fetchTickerStatus,
+        st,setSt
       }}
     >
       {children}
