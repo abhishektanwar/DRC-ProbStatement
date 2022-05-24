@@ -1,11 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-const TickerSearchContext = createContext();
+const TickerContext = createContext();
 
-const TickerSearchProvider = ({ children }) => {
+const TickerProvider = ({ children }) => {
   const [searchTicker, setSearchTicker] = useState("");
   const [tickerList, setTickerList] = useState([]);
-  const [st,setSt] = useState([])
+  const [tickerToSubscribe, setTickerToSubscribe] = useState("tBTCUSD");
+  const [st, setSt] = useState([]);
   const [fetchTickerStatus, setFetchTickerStatus] = useState({
     loading: false,
     error: false,
@@ -44,28 +45,33 @@ const TickerSearchProvider = ({ children }) => {
       getTickerList();
       setFetchTickerStatus((prev) => ({ ...prev, loading: false }));
     }, 5000);
-    return ()=>{clearInterval(interval)}
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   const handleTickerSearch = (value) => {
     setSearchTicker(value);
   };
 
   return (
-    <TickerSearchContext.Provider
+    <TickerContext.Provider
       value={{
         searchTicker,
         handleTickerSearch,
         tickerList,
         setTickerList,
         fetchTickerStatus,
-        st,setSt
+        st,
+        setSt,
+        tickerToSubscribe,
+        setTickerToSubscribe,
       }}
     >
       {children}
-    </TickerSearchContext.Provider>
+    </TickerContext.Provider>
   );
 };
 
-const useTickerSearch = () => useContext(TickerSearchContext);
+const useTicker = () => useContext(TickerContext);
 
-export { useTickerSearch, TickerSearchProvider };
+export { useTicker, TickerProvider };

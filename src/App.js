@@ -2,14 +2,14 @@ import logo from "./logo.svg";
 import "./App.css";
 import TickerList from "./Components/TickerList/TickerList";
 import TickerDetail from "./Components/TickerDetail/TickerDetail";
-import { TickerSearchProvider } from "./contexts/TickerSearchContext/TickerSearchContext";
+import { TickerProvider } from "./contexts/TickerSearchContext/TickerContext";
 
 function App() {
   return (
     <div className="App">
-      <TickerSearchProvider>
+      <TickerProvider>
         <TickerDetail />
-      </TickerSearchProvider>
+      </TickerProvider>
     </div>
   );
 }

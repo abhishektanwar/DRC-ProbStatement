@@ -1,19 +1,20 @@
-const initSocket = ({setSt,st}) => {
+const initSocket = ({setSt,tickerToSubscribe}) => {
   const ws = new WebSocket("wss://api-pub.bitfinex.com/ws/2");
 
-  const handleClose = () => {
+  const handleSocketConnectionClose = () => {
     ws.send(
       JSON.stringify({
-        event: "subscribe",
+        event: "unsubscribe",
         channel: "ticker",
-        symbol: "tBTCUSD",
+        symbol: tickerToSubscribe,
       })
     );
   };
+  
   let msg = JSON.stringify({
     event: "subscribe",
     channel: "ticker",
-    symbol: "tBTCUSD",
+    symbol: tickerToSubscribe,
   });
 
   ws.onopen = (event) => {
@@ -26,17 +27,16 @@ const initSocket = ({setSt,st}) => {
   let timeStamp = 0;
   ws.onmessage = function (message) {
     const json = JSON.parse(message.data);
-    
-    try {
-      if (json[1] !== "hb") {
-        console.log("ws data", json);
-        setSt(json[1])
+      try {
+        if (json[1] !== "hb") {
+          console.log("ws data", json);
+          setSt(json[1])
+        }
+      } catch (err) {
+        console.log(err);
       }
-    } catch (err) {
-      console.log(err);
-    }
   };
-  return {handleClose}
+  return {handleSocketConnectionClose,ws}
 };
 
 export {initSocket}

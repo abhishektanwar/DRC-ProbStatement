@@ -1,10 +1,10 @@
 import { useState, FC, useEffect } from "react";
-import { useTickerSearch } from "../../contexts/TickerSearchContext/TickerSearchContext";
+import { useTicker } from "../../contexts/TickerSearchContext/TickerContext";
 import "./search-box.css";
 
 const SearchBox = ({ handleSearch }) => {
   
-  const {searchTicker:searchInput,handleTickerSearch} = useTickerSearch();
+  const {searchTicker:searchInput,handleTickerSearch} = useTicker();
   useEffect(() => {
     if (searchInput !== "") {
       // handleSearch("");
